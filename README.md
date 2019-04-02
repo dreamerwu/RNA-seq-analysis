@@ -2,6 +2,10 @@
 
 Reference paper: Differential gene and transcript expression analysis of RNA-seq experiments with TopHat and Cufflinks.
 
+Human reference genome downloaded from: https://ccb.jhu.edu/software/tophat/igenomes.shtml
+
+
+
 Step 1. Align the RNA-seq reads to genome
 > tophat -G genes.gtf -o output_dictionary genome sample1_1.fq sample1_2.fq
 
