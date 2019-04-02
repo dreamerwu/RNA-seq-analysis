@@ -6,8 +6,10 @@ Step 1. Align the RNA-seq reads to genome
 > tophat -G genes.gtf -o output_dictionary genome sample1_1.fq sample1_2.fq
 
 Step 2. Assemble expressed genes and transcripts
+
 (assemble transcripts for each sample):
 > cufflinks -o output_dictionary sample1/accepted_hits.bam
+
 (create a file called assemblies.txt that lists the assembly file for each sample. The file should contain the following lines:)
 > ./sample1/transcripts.gtf
   ./sample2/transcripts.gtf
@@ -16,6 +18,7 @@ Step 2. Assemble expressed genes and transcripts
   .
   .
   .
+  
  (Run Cuffmerge on all your assemblies to create a single merged transcriptome annotation):
  > cuffmerge -g genes.gtf -s genome.fa assemblies.txt
  
