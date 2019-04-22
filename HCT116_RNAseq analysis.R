@@ -34,14 +34,9 @@ data=read.delim("D:/demo/demo.txt",head=T,sep="\t")
 ls(data)
 p=ggplot(data,aes(x=value_1,y=value_2,color=group,label=gene))+geom_point(size=2)+theme_bw()+scale_color_manual(values=c("green","gray","red"))
 pp=p+scale_x_continuous(trans='log10')+scale_y_continuous(trans='log10')+geom_abline(intercept=0,slope=1)
-pp+#geom_text_repel(data=subset(data,gene=="AMOTL2"),aes(label=gene),hjust=0,vjust=0,box.padding=unit(0.35,"lines"),point.padding=unit(0.3,"lines"),direction="x")
-  geom_text_repel(data=subset(data,group!='no'&log2.fold_change.>3&q_value==0.000321506&annotation!='no mapping'),aes(label=gene),hjust=0,vjust=0,box.padding=unit(0.35,"lines"),point.padding=unit(0.3,"lines"))
+pp+geom_text_repel(data=subset(data,gene=="ATF3"),aes(label=gene),hjust=3,vjust=-2,box.padding=unit(0.5,"lines"),point.padding=unit(0.3,"lines"),direction="both",arrow=arrow(length=unit(0.01,'npc')),max.iter=3e3,force=2)
+  #geom_text_repel(data=subset(data,group!='no'&log2.fold_change.>4&q_value<0.05&annotation!='no mapping'),aes(label=gene),hjust=3,vjust=-2,box.padding=unit(0.5,"lines"),point.padding=unit(0.3,"lines"),direction="both",arrow=arrow(length=unit(0.01,'npc')),max.iter=3e3,force=2)
   #geom_text(data=subset(data,group!='no'),aes(label=gene),hjust=0,vjust=0)
-
-
-
-
-
 
 
 
