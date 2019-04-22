@@ -28,14 +28,15 @@ pp=p+ylim(-0.3,0.3)
 pp+theme(axis.text.x=element_blank(),axis.text.y=element_blank(),axis.title.x=element_blank(),axis.title.y=element_blank(),axis.ticks.x=element_blank(),axis.ticks.y=element_blank())
 
 ###plot x1 & x2
+library("ggrepel")
 library("ggplot2")
 data=read.delim("D:/demo/demo.txt",head=T,sep="\t")
 ls(data)
-p=ggplot(data,aes(x=value_1,y=value_2,color=group))+geom_point(size=2)+theme_bw()
-pp=p+scale_x_continuous(trans='log10')+scale_y_continuous(trans='log10')
-pp+geom_abline(intercept=0,slope=1)
-
-
+p=ggplot(data,aes(x=value_1,y=value_2,color=group,label=gene))+geom_point(size=2)+theme_bw()+scale_color_manual(values=c("green","gray","red"))
+pp=p+scale_x_continuous(trans='log10')+scale_y_continuous(trans='log10')+geom_abline(intercept=0,slope=1)
+pp+#geom_text_repel(data=subset(data,gene=="AMOTL2"),aes(label=gene),hjust=0,vjust=0,box.padding=unit(0.35,"lines"),point.padding=unit(0.3,"lines"),direction="x")
+  geom_text_repel(data=subset(data,group!='no'&log2.fold_change.>3&q_value==0.000321506&annotation!='no mapping'),aes(label=gene),hjust=0,vjust=0,box.padding=unit(0.35,"lines"),point.padding=unit(0.3,"lines"))
+  #geom_text(data=subset(data,group!='no'),aes(label=gene),hjust=0,vjust=0)
 
 
 
